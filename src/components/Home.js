@@ -6,7 +6,7 @@ function Home() {
    
         
         const gitList=()=>{
-            const serverurl = `http://localhost:3003/trending`;
+            const serverurl = `http://localhost:3005/trending`;
             fetch(serverurl)
             .then(result=>{
                 console.log(result);
