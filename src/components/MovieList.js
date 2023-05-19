@@ -4,9 +4,13 @@ import axios from 'axios';
 //import {  useState } from 'react';
 
 function MovieList(props) {
+
+
   //const [showFlag,setshowFlag]=useState(false);
   const addToFav = (item) =>{
-    const serverURL = `http://localhost:3003/addMovie`;
+    
+    console.log(item);
+    const serverURL = `http://localhost:3005/addToFav`;
     axios.post(serverURL , item )
     .then(response=>{
         console.log(response.data)
