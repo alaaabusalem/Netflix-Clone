@@ -8,7 +8,7 @@ function MovieList(props) {
 
   //const [showFlag,setshowFlag]=useState(false);
   const addToFav = (item) =>{
-    
+    console.log(item)
     console.log(item);
     const serverURL = `http://localhost:3005/addToFav`;
     axios.post(serverURL , item )
