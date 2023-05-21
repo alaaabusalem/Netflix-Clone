@@ -1,37 +1,39 @@
 
 import { useEffect, useState } from 'react';
 import FavListCard from './FavListCard';
+import axios from 'axios';
 
 function FavList() {
  const [favlist,setfavlist]=useState([]);
-   
+
+ 
+       
+        
        
         const gitList=()=>{
-            const serverurl = `http://localhost:3005/gitFavList`;
-            fetch(serverurl)
+            const serverurl = `${process.env.REACT_APP_serverURL}/gitFavList`;
+            axios(serverurl)
             .then(result=>{
                 console.log(result);
-            result.json()
-            .then(data=>{
-                console.log(data);
-                setfavlist(data);
-                
-            })
+                setfavlist(result.data);
+           
             })
             .catch(error=>{
                 console.log(`there is something error`);
             })
 
         }
+        
 
         useEffect(()=>{
-           
             gitList()
-        },[])
+        },[]);
+
+       
 
     return (
         <>
-        <FavListCard favlist={favlist} gitList={gitList}/>
+        <FavListCard favlist={favlist} setfavlist={setfavlist}/>
       </>
         
     );

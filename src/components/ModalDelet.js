@@ -11,10 +11,11 @@ function ModalDelet(props) {
         e.preventDefault();
         
        
-         const serverURL = `http://localhost:3005/deletitem/${props.item.id}`;
+         const serverURL = `${process.env.REACT_APP_serverURL}/deletitem/${props.item.id}`;
          axios.delete(serverURL)
          .then(response=>{
              console.log(response.data)
+            // props.reloadList(response);
              
          })
          .catch((error)=>{
