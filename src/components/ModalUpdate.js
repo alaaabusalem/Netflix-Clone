@@ -13,11 +13,11 @@ function ModalUpdate(props) {
         [props.item.overview]=[e.target.overview.value];
         [props.item.comment]=[e.target.comment.value];
          console.log(props.item);
-         const serverURL = `http://localhost:3005/updateFavList`;
+         const serverURL = `${process.env.REACT_APP_serverURL}/updateFavList`;
          axios.put(serverURL , props.item )
          .then(response=>{
-             console.log(response.data)
-             
+             console.log(response)
+             //props.reloadList(response);
          })
          .catch((error)=>{
              console.log(error)

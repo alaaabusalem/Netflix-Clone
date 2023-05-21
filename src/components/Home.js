@@ -1,21 +1,18 @@
 
 import MovieList from'./MovieList';
-
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 function Home() {
  const [movieList,setmovieList]=useState([]);
    
         
         const gitList=()=>{
-            const serverurl = `http://localhost:3005/trending`;
-            fetch(serverurl)
+            const serverurl = `${process.env.REACT_APP_serverURL}/trending`;
+            axios(serverurl)
             .then(result=>{
                 console.log(result);
-            result.json()
-            .then(data=>{
-                console.log(data);
-                setmovieList(data);
-            })
+                setmovieList(result.data);
+            
             })
             .catch(error=>{
                 console.log(`there is something error`);
