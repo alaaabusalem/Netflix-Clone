@@ -4,24 +4,25 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
-function updateModal(props) {
+function ModalUpdate(props) {
     const handelSubmit = (e) => {
-        e.preventDefult();
+        e.preventDefault();
+        
         [props.item.title]=[e.target.title.value];
         [props.item.release_date]=[e.target.release_date.value];
         [props.item.overview]=[e.target.overview.value];
         [props.item.comment]=[e.target.comment.value];
-   
-    const serverURL = `http://localhost:3005/updateFavList`;
-    axios.put(serverURL , props.item )
-    .then(response=>{
-        console.log(response.data)
-        
-    })
-    .catch((error)=>{
-        console.log(error)
-  });
-
+         console.log(props.item);
+         const serverURL = `http://localhost:3005/updateFavList`;
+         axios.put(serverURL , props.item )
+         .then(response=>{
+             console.log(response.data)
+             
+         })
+         .catch((error)=>{
+             console.log(error)
+       });
+       props.handleCloseFlag();
     }
     return (
         <>
@@ -37,26 +38,26 @@ function updateModal(props) {
                             <Form.Label>title</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder={props.item.title}
+                                defaultValue={props.item.title}
                                 name="title"
                             />
                             <Form.Label>release_date</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder={props.item.release_date}
+                                defaultValue={props.item.release_date}
                                 name="release_date"
                             />
                             <Form.Label>overview</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder={props.item.overview}
+                                defaultValue={props.item.overview}
                                 name="overview"
                             />
 
                             <Form.Label>comment</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder={props.item.comment}
+                                defaultValue={props.item.comment}
                                 name="comment"
                             />
                         </Form.Group>
@@ -76,4 +77,4 @@ function updateModal(props) {
         </>
     )
 }
-export default updateModal;
+export default ModalUpdate;

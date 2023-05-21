@@ -1,16 +1,29 @@
-import updateModal from './updateModal';
+import ModalUpdate from './ModalUpdate';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import ModalDelet from'./ModalDelet';
 //import Form from 'react-bootstrap/Form';
 
 import { useState } from 'react';
 function FavListCard(props){
+  const [itemFlag, setitemFlag] = useState({});
   const [showFlag, setshowFlag] = useState(false);
+  const [showFlagDelet, setshowFlagDelet] = useState(false);
   function handleShowFlag() {
     setshowFlag(true);
   }
   function handleCloseFlag() {
-    setshowFlag(false);}
+    setshowFlag(false);
+    setitemFlag({});
+  }
+  function handleShowFlagDelet() {
+    setshowFlagDelet(true);
+     
+  }
+  function handleCloseFlagDelet() {
+    setshowFlagDelet(false);
+    setitemFlag({});
+  }
   
  return(
     <>
@@ -33,16 +46,18 @@ function FavListCard(props){
           <Card.Text>
             {item.comment}
           </Card.Text>
-          <Button variant="primary" onClick={()=>{handleShowFlag()}}> update</Button>
+          <Button variant="primary" onClick={()=>{handleShowFlag();setitemFlag(item);}}> update</Button>
+          <Button variant="danger" onClick={()=>{handleShowFlagDelet();setitemFlag(item);}}> Delet</Button>
         </Card.Body>
       </Card>
-      <updateModal handleShowFlag={handleShowFlag} handleCloseFlag={handleCloseFlag} showFlag={showFlag} item={item}/>
+      
      </>
      
         );
      })}
-     
-    </>
+     <ModalUpdate handleShowFlag={handleShowFlag} handleCloseFlag={handleCloseFlag} showFlag={showFlag} item={itemFlag}/>
+
+     <ModalDelet handleShowFlagDelet={handleShowFlagDelet} handleCloseFlagDelet={handleCloseFlagDelet} showFlagDelet={showFlagDelet} item={itemFlag}/>    </>
  )
 }
 export default FavListCard;

@@ -31,7 +31,7 @@ function FavList() {
 
     return (
         <>
-        <FavListCard favlist={favlist}/>
+        <FavListCard favlist={favlist} gitList={gitList}/>
       </>
         
     );
