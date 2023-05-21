@@ -8,7 +8,7 @@ function ModalMovie(props) {
     const handelSubmit=(e)=>{
      e.preventDefault();
      console.log(e.target.comment.value);
-     [props.item.comment]=e.target.comment.value;
+     [props.item.comment]=[e.target.comment.value];
      props.callAddToFav(props.item);
      props.handleCloseFlag();
     }

@@ -1,20 +1,21 @@
 
-import MovieList from'./MovieList';
-
 import { useEffect, useState } from 'react';
-function Home() {
- const [movieList,setmovieList]=useState([]);
+import FavListCard from './FavListCard';
+
+function FavList() {
+ const [favlist,setfavlist]=useState([]);
    
-        
+       
         const gitList=()=>{
-            const serverurl = `http://localhost:3005/trending`;
+            const serverurl = `http://localhost:3005/gitFavList`;
             fetch(serverurl)
             .then(result=>{
                 console.log(result);
             result.json()
             .then(data=>{
                 console.log(data);
-                setmovieList(data);
+                setfavlist(data);
+                
             })
             })
             .catch(error=>{
@@ -24,15 +25,16 @@ function Home() {
         }
 
         useEffect(()=>{
+           
             gitList()
         },[])
 
     return (
         <>
+        <FavListCard favlist={favlist} gitList={gitList}/>
+      </>
         
-        <MovieList data={movieList}/>
-        </>
     );
 }
 
-export default Home;
+export default FavList;
